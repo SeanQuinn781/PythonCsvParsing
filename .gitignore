@@ -1,0 +1,6 @@
+venv
+# ignored due to Github size limits, uploaded as tar.gz file instead
+Data
+# ignore pycharm dir
+.idea
+README.md
