@@ -17,9 +17,9 @@ in temperature between the first and last dates.
 """
 
 # returns the `station_id` that experienced the most amount of temperature fluctuation
-def get_temp_flucs(file):
+def get_temp_flucs(csv):
     # Disregard the unneeded date column in our dataframe, sort the weather data by station_id
-    df = pd.read_csv(file, usecols=["station_id", "temperature_c"]).sort_values(
+    df = pd.read_csv(csv, usecols=["station_id", "temperature_c"]).sort_values(
         by=["station_id"]
     )
 
@@ -39,7 +39,6 @@ def get_temp_flucs(file):
         # there was no previous row station so set previous row station id to current row station id
         if first_iteration:
             cur_row_station = row_station
-            prev_row_station = row_station
             prev_row_temp = cur_row_temp
 
             # initialization is complete, set first_iteration to false
@@ -74,9 +73,10 @@ def get_temp_flucs(file):
     return station_with_most_flucs
 
 
-get_temp_flucs("data/test-data-1.csv")
-get_temp_flucs("data/test-data-2.csv")
-get_temp_flucs("data/test-data.csv")
-# testing on the full data.csv
-# get_temp_flucs("data/data.csv", 2000.001, 2011.8)
-
+# Uncomment below for debugging/ manual testing
+"""
+get_temp_flucs("Data/test-data-1.csv")
+get_temp_flucs("Data/test-data-2.csv")
+get_temp_flucs("Data/test-data.csv")
+get_temp_flucs("Data/data.csv")
+"""

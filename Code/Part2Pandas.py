@@ -48,8 +48,10 @@ def get_temp_flucs_pd(csv):
     return station_with_most_flucs
 
 
-# TODO pass csv
-get_temp_flucs("data/test-data-1.csv")
-get_temp_flucs("data/test-data-2.csv")
-get_temp_flucs("data/test-data.csv")
-get_temp_flucs_pd("data/data.csv")
+# Uncomment below for debugging/ manual testing
+"""
+get_temp_flucs("Data/test-data-1.csv")
+get_temp_flucs("Data/test-data-2.csv")
+get_temp_flucs("Data/test-data.csv")
+get_temp_flucs_pd("Data/data.csv")
+"""

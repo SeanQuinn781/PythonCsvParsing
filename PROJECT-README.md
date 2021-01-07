@@ -29,3 +29,9 @@ pip3 install -r requirements.txt
 cd Code/ && python3 Part1.py
 ```
 
+5) Run the tests
+
+```
+python3 -m unittest TestTempFuncs.py
+python3 -m unittest TestFlatten.py
+```

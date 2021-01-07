@@ -48,9 +48,12 @@ def get_temp_flucs_date_range(csv, start_date, end_date):
     return station_with_most_flucs
 
 
-# testing on smaller data sets
-get_temp_flucs_date_range("data/test-data-1.csv", 2000.001, 2011.8)
-get_temp_flucs_date_range("data/test-data-2.csv", 2000.001, 2011.8)
-get_temp_flucs_date_range("data/test-data.csv", 2000.001, 2011.8)
-# testing on the full data.csv
-# get_temp_flucs_pd_date_range("data/data.csv", 2000.001, 2011.8)
+# Uncomment below for debugging and perf timing
+"""
+get_temp_flucs_date_range("Data/test-data-1.csv", 2000.001, 2011.8)
+get_temp_flucs_date_range("Data/test-data-2.csv", 2000.001, 2011.8)
+get_temp_flucs_date_range("Data/test-data.csv", 2000.001, 2011.8)
+get_temp_flucs_date_range("Data/data.csv", 2000.001, 2011.8)
+"""
+
+# the processing Data/data.csv should output: 735181
