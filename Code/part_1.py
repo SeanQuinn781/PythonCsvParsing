@@ -8,16 +8,17 @@ import pandas as pd
 
 """
 **Part 1**:
-Create a function that when called returns the station_id, and date pair that reported the lowest temperature. If a tie occurs simply return one pair at random.
+Create a function that when called returns the station_id, and date pair that reported the lowest temperature. 
+If a tie occurs simply return one pair at random.
 """
 
 # Function 1) Get lowest temp using Pandas
 def get_lowest_temp_pd(file):
-    df = pd.read_csv(file, usecols=["station_id", "date", "temperature_c"])
-    minFrame = df.sort_values(by=["temperature_c"])
-    station_id = minFrame.iloc[0][0]
-    date = minFrame.iloc[0][1]
-    lowest_temp = minFrame.iloc[0][2]
+    data_frame = pd.read_csv(file, usecols=["station_id", "date", "temperature_c"])
+    min_frame = data_frame.sort_values(by=["temperature_c"])
+    station_id = min_frame.iloc[0][0]
+    date = min_frame.iloc[0][1]
+    lowest_temp = min_frame.iloc[0][2]
     # debug
     debugger_util(lowest_temp, station_id, date)
     return station_id, date
@@ -60,8 +61,8 @@ def debugger_util(lowest_temp, station_id, date):
     print("The lowest temperature was recorded on: ", date)
 
 
-def exec_time(start_time):
-    exec_time = time.time() - start_time
+def exec_time(start):
+    exec_time = time.time() - start
     return exec_time
 
 
@@ -76,13 +77,14 @@ print("The first function took ", exec_time(start_time), " to execute")
 print(
     "Getting the station and date of the lowest possible temperature using csv's DictReader"
 )
-start_time = time.time()
+start_time_2 = time.time()
 get_lowest_temp("Data/test-data.csv")
-print("The second function took ", exec_time(start_time), " to execute")
+print("The second function took ", exec_time(start_time_2), " to execute")
 
 print(
-    "Getting the station and date of the lowest possible temperature using csv's DictReader and sorting data"
+    "Getting the station and date of the lowest possible temperature "
+    "using csv's DictReader and sorting data"
 )
-start_time = time.time()
+start_time_3 = time.time()
 get_lowest_temp_slowest("Data/test-data-2.csv")
-print("The third function took ", exec_time(start_time), " to execute")
+print("The third function took ", exec_time(start_time_3), " to execute")
