@@ -17,17 +17,14 @@ in temperature between the first and last dates.
 """
 
 
-def get_temp_flucs_pd():
+def get_temp_flucs_pd(csv):
     df = pd.read_csv(
-        "data/test-data-2.csv",
+        csv,
         usecols=["station_id", "temperature_c"],
     ).sort_values(by=["station_id"])
 
     # create a deduped list of station ids
     deduped_stations = set(df["station_id"].values)
-
-    # flag used to init vars if its the first pass over data
-    first_iteration = True
 
     # track flucs per station and most overall
     station_with_most_flucs = 0
@@ -51,4 +48,8 @@ def get_temp_flucs_pd():
     return station_with_most_flucs
 
 
-get_temp_flucs_pd()
+# Uncomment below for debugging/ manual testing
+get_temp_flucs_pd("Data/test-data-1.csv")
+get_temp_flucs_pd("Data/test-data-2.csv")
+get_temp_flucs_pd("Data/test-data.csv")
+get_temp_flucs_pd("Data/data.csv")
