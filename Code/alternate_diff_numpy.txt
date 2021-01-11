@@ -1,6 +1,0 @@
-If you have an array, you can also use numpy.diff:
-
-import numpy as np
-a = [1,5,6,8]
-np.diff(a)
-Out: array([4, 1, 2])

@@ -26,22 +26,15 @@ def get_temp_flucs_date_range(csv_file, start_date, end_date):
     reader = csv.DictReader(open(csv_file), delimiter=",")
     sorted_list = sorted(reader, key=lambda row: (row["station_id"]), reverse=False)
     first_iteration = True
-    flucs_seen = []
     last_temp = 0
     most_fluc_seen = 0
     station_with_most_flucs = 0
     cur_total_flucs = 0
 
+
     for line in sorted_list:
         date = line["date"]
-        """
-        print("line is ", line)
-        print('start date is ', start_date)
-        print('cur date is ', date)
-        print('end date is ', end_date)  # and line['date'] < end_date
-        print('date occurs after start date: ', (date > start_date))
-        print('date occurs before end date: ', date < end_date)
-        """
+
         if date >= start_date and date <= end_date:
             temp = float(line["temperature_c"])
 
@@ -53,40 +46,24 @@ def get_temp_flucs_date_range(csv_file, start_date, end_date):
 
             # if the station changes we need to reset some variables
             if cur_station != line["station_id"]:
-
-                # find the total flucs between all temps at cur_station
-                # iterate over every temperature finding the fluctuation between
-                # consecutive temps, adding to the total fluctuation with each item
-                # for first, second in zip(flucs_seen,flucs_seen[1:]):
-                #    cur_total_flucs += abs(first - second)
-                # print("flucs seen for station", cur_station, " is ", cur_total_flucs)
                 if cur_total_flucs > most_fluc_seen:
                     most_fluc_seen = cur_total_flucs
                     station_with_most_flucs = cur_station
 
                 # reset current_station until next time station updates
                 cur_station = line["station_id"]
-                # update last_temp with current temp for new station
-                last_temp = temp
-                # reset flucs_seen for the new station
-                flucs_seen = []
-                flucs_seen.append(temp)
+
                 # reset cur total flucs
                 cur_total_flucs = 0
 
             else:
-                flucs_seen.append(temp)
-
-                # for first, second in zip(flucs_seen,flucs_seen[1:]):
-                #    cur_total_flucs += abs(first - second)
-                print("flucs seen for station", cur_station, " is ", cur_total_flucs)
-
+                cur_fluc = abs(last_temp - temp)
+                cur_total_flucs += cur_fluc
                 if cur_total_flucs > most_fluc_seen:
                     most_fluc_seen = cur_total_flucs
                     station_with_most_flucs = cur_station
 
-
-
+            last_temp = temp
 
     print("Most flucs seen was: ", most_fluc_seen)
     print("Station with the most flucs: ", station_with_most_flucs)
@@ -94,25 +71,21 @@ def get_temp_flucs_date_range(csv_file, start_date, end_date):
 
 
 # Uncomment below for debugging and perf timing
-"""
 
 get_temp_flucs_date_range("Data/test-data-1.csv", "2000.001", "2011.8")
 print("---------------------------")
 get_temp_flucs_date_range("Data/test-data-2.csv", "2000.001", "2011.8")
 print("---------------------------")
 get_temp_flucs_date_range("Data/test-data.csv", "2000.001", "2012.002")
-"""
-start_time = time.time()
 print("---------------------------")
-get_temp_flucs_date_range("Data/test-data.csv", "2000.001", "2011.8")
+start_time = time.time()
+get_temp_flucs_date_range("Data/data.csv", "2000.001", "2011.8")
 print("The first function took ", exec_time(start_time), " to execute")
 
 """
-Result and performance info:
+Result and performance info for Data/data.csv:
 
-Most flucs seen was:  38.601
-Station with the most flucs:  659516
-The first function took  26.598039388656616  to execute
-
+Most flucs seen was:  1610.3680000000002
+Station with the most flucs:  735181
+The first function took  17.110  to execute
 """
-# the processing Data/data.csv should output: 735181

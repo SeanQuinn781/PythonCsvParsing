@@ -1,2 +1,4 @@
 pandas
 coverage
+pylint
+# black (optionally used for autoformatting, may break tests)
