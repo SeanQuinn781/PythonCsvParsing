@@ -19,8 +19,7 @@ class TestTempFuncs(unittest.TestCase):
             get_lowest_temp("Data/test-data-2.csv"), ("68", "2000.375")
         )
 
-        self.assertEqual(get_lowest_temp("Data/data.csv"), ('676223', '2010.542'))
-        self.assertEqual(get_lowest_temp_pd("Data/data.csv"), (676223.0, 2010.542))
+
 
     # Test functions in part 2
     def test_get_temp_flucs(self):
@@ -33,8 +32,7 @@ class TestTempFuncs(unittest.TestCase):
         self.assertEqual(get_temp_flucs("Data/test-data.csv"), '1')
         self.assertEqual(get_temp_flucs_pd("Data/test-data.csv"), 2)
 
-        # takes a while to execute so moved into test_full_data.py
-        # self.assertEqual(get_temp_flucs_pd("Data/data.csv"), 757524)
+
 
     # Test function in part 3
     def test_get_temp_flucs_date_range(self):
@@ -48,10 +46,19 @@ class TestTempFuncs(unittest.TestCase):
             get_temp_flucs_date_range("Data/test-data.csv", '2000.001', '2011.8'), '2'
         )
 
-        # takes a while to execute so moved into test_full_data.py
-        # self.assertEqual(
-        #    get_temp_flucs_date_range("Data/data.csv", '2000.001', '2011.8'), '735181'
-        # )
+
 
 if __name__ == "__main__":
     unittest.main()
+
+# takes a while to execute so moved into test_full_data.py
+# self.assertEqual(get_lowest_temp("Data/data.csv"), ('676223', '2010.542'))
+# self.assertEqual(get_lowest_temp_pd("Data/data.csv"), (676223.0, 2010.542))
+
+# takes a while to execute so moved into test_full_data.py
+# self.assertEqual(get_temp_flucs_pd("Data/data.csv"), 757524)
+
+# takes a while to execute so moved into test_full_data.py
+# self.assertEqual(
+#    get_temp_flucs_date_range("Data/data.csv", '2000.001', '2011.8'), '735181'
+# )
