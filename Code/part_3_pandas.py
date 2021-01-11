@@ -52,6 +52,7 @@ def exec_time(start):
 
 
 # Uncomment below for debugging and perf timing
+"""
 get_temp_flucs_date_range_pd("Data/test-data-1.csv", 2000.001, 2011.8)
 get_temp_flucs_date_range_pd("Data/test-data-2.csv", 2000.001, 2011.8)
 get_temp_flucs_date_range_pd("Data/test-data.csv", 2000.001, 2011.8)
@@ -59,6 +60,7 @@ print("---------------------------")
 start_time = time.time()
 get_temp_flucs_date_range_pd("Data/data.csv", 2000.001, 2011.8)
 print("The function took ", exec_time(start_time), " to execute")
+"""
 
 """
 Result and performance info for Data/data.csv:

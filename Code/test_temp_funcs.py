@@ -3,7 +3,6 @@ from part_1 import get_lowest_temp, get_lowest_temp_pd, get_lowest_temp_slowest
 from part_2 import get_temp_flucs
 from part_2_pandas import get_temp_flucs_pd
 from part_3 import get_temp_flucs_date_range
-from part_3_pandas import get_temp_flucs_date_range_pd
 
 # TODO: reorganize tests, split up functions based on pandas and non pandas versions
 

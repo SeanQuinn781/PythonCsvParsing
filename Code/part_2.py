@@ -67,7 +67,7 @@ def get_temp_flucs(csv_file):
 
 
 # Uncomment below for debugging/ manual testing
-
+"""
 get_temp_flucs("Data/test-data-1.csv")
 get_temp_flucs("Data/test-data-2.csv")
 get_temp_flucs("Data/test-data.csv")
@@ -75,6 +75,8 @@ print("---------------------------")
 start_time = time.time()
 get_temp_flucs("Data/data.csv")
 print("The first function took ", exec_time(start_time), " to execute")
+"""
+
 
 """
 Result and performance info for Data/data.csv:
@@ -82,6 +84,4 @@ Result and performance info for Data/data.csv:
 Most flucs seen was:  2760.555999999999
 Station with the most flucs:  735181
 The first function took  17.451486825942993  to execute
-
-
 """

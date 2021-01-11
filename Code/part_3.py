@@ -71,7 +71,7 @@ def get_temp_flucs_date_range(csv_file, start_date, end_date):
 
 
 # Uncomment below for debugging and perf timing
-
+"""
 get_temp_flucs_date_range("Data/test-data-1.csv", "2000.001", "2011.8")
 print("---------------------------")
 get_temp_flucs_date_range("Data/test-data-2.csv", "2000.001", "2011.8")
@@ -81,6 +81,7 @@ print("---------------------------")
 start_time = time.time()
 get_temp_flucs_date_range("Data/data.csv", "2000.001", "2011.8")
 print("The first function took ", exec_time(start_time), " to execute")
+"""
 
 """
 Result and performance info for Data/data.csv:

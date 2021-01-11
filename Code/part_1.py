@@ -68,7 +68,6 @@ def exec_time(start):
 
 """
 Uncomment below for debugging and perf timing (tests all three functions
-"""
 print("Getting the station and date of the lowest possible temperature using pandas")
 start_time = time.time()
 get_lowest_temp_pd("Data/data.csv")
@@ -88,3 +87,4 @@ print(
 start_time_3 = time.time()
 get_lowest_temp_slowest("Data/test-data-2.csv")
 print("The third function took ", exec_time(start_time_3), " to execute")
+"""
