@@ -10,7 +10,5 @@ def flatten_list(list):
 
 
 print(list(flatten_list([1])))
-print(list(flatten_list([[1,2,[3]],4])))
-print(list(flatten_list([[5,6,[7]],8])))
-
-
+print(list(flatten_list([[1, 2, [3]], 4])))
+print(list(flatten_list([[5, 6, [7]], 8])))

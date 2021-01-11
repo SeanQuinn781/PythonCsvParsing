@@ -1,5 +1,6 @@
 # used in the pandas version
 import pandas as pd
+import time
 
 """
 **Part 3**:
@@ -18,10 +19,10 @@ def get_temp_flucs_date_range(csv, start_date, end_date):
     # create a deduped list of station ids
     deduped_stations = set(df["station_id"].values)
 
-    # Select Pandas dataframe rows between two dates. We can perform this
-    # using a boolean mask. Valid dates formats include
+    # Select Pandas dataframe rows between two dates. Using a boolean mask.
+    # Valid dates formats include
     # datetime(numpy and pandas), timestamps, or strings
-    date_mask = (df["date"] > start_date) & (df["date"] <= end_date)
+    date_mask = (df["date"] >= start_date) & (df["date"] <= end_date)
 
     # assign mask to df to return the rows with birth_date between our specified start/end dates
     df = df.loc[date_mask]
@@ -35,10 +36,15 @@ def get_temp_flucs_date_range(csv, start_date, end_date):
     for station in deduped_stations:
         # print(station)
         # get all temps recorded at the current station
+
         station_temps = df[df["station_id"] == station]["temperature_c"].values
+        print("the station temps for station number: ", station)
+        print("are ", station_temps)
         # get sum of all fluctuations at this station
         sum_of_flucs = abs(station_temps[:-1] - station_temps[1:]).sum()
-
+        print("the sum of station temps are ", sum_of_flucs)
+        # print("station is ", station)
+        # print("sum of flucs is ", sum_of_flucs)
         if sum_of_flucs > most_fluc_seen:
             most_fluc_seen = sum_of_flucs
             station_with_most_flucs = station
@@ -48,16 +54,24 @@ def get_temp_flucs_date_range(csv, start_date, end_date):
     return station_with_most_flucs
 
 
-def exec_time(start_time):
-    exec_time = time.time() - start_time
-    return exec_time
+def exec_time(start):
+    return time.time() - start
 
 
 # Uncomment below for debugging and perf timing
+"""
 get_temp_flucs_date_range("Data/test-data-1.csv", 2000.001, 2011.8)
 get_temp_flucs_date_range("Data/test-data-2.csv", 2000.001, 2011.8)
+"""
 get_temp_flucs_date_range("Data/test-data.csv", 2000.001, 2011.8)
+"""
 start_time = time.time()
+print("---------------------------")
 get_temp_flucs_date_range("Data/data.csv", 2000.001, 2011.8)
-
+# get_temp_flucs_date_range("Data/data.csv", "2000.001", "2011.8")
+print("The first function took ", exec_time(start_time), " to execute")
 # the processing Data/data.csv should output: 735181
+Most flucs seen was  1610.368
+Station with the most flucs is  735181
+The first function took  95.77447462081909  to execute
+"""
