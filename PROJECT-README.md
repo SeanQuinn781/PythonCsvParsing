@@ -26,7 +26,7 @@ pip3 install -r requirements.txt
 4) Run the various python files within the Code directory:
 
 ```
-cd Code/ && python3 Part1.py
+cd Code/ && python3 Part1.py, Part2.py, etc
 ```
 
 5) Run the tests
