@@ -36,6 +36,7 @@ def get_temp_flucs_pd(csv):
         # print(station)
         # get all temps recorded at the current station
         station_temps = df[df["station_id"] == station]["temperature_c"].values
+        sum_of_flucs = 0
         # get sum of all fluctuations at this station
         sum_of_flucs = abs(station_temps[:-1] - station_temps[1:]).sum()
 
@@ -43,7 +44,6 @@ def get_temp_flucs_pd(csv):
             most_fluc_seen = sum_of_flucs
             station_with_most_flucs = station
 
-    print("Most flucs seen was ", most_fluc_seen)
     print("Station with the most flucs is ", station_with_most_flucs)
     return station_with_most_flucs
 
@@ -53,5 +53,5 @@ def get_temp_flucs_pd(csv):
 get_temp_flucs_pd("Data/test-data-1.csv")
 get_temp_flucs_pd("Data/test-data-2.csv")
 get_temp_flucs_pd("Data/test-data.csv")
-get_temp_flucs_pd("Data/data.csv")
 """
+get_temp_flucs_pd("Data/data.csv")

@@ -61,7 +61,6 @@ def get_temp_flucs(csv_file):
 
             last_temp = temp
 
-    print("Most flucs seen was: ", most_fluc_seen)
     print("Station with the most flucs: ", station_with_most_flucs)
     return station_with_most_flucs
 
@@ -76,7 +75,6 @@ start_time = time.time()
 get_temp_flucs("Data/data.csv")
 print("The first function took ", exec_time(start_time), " to execute")
 """
-
 
 """
 Result and performance info for Data/data.csv:

@@ -3,28 +3,13 @@ import csv
 # used for perf timing
 import time
 
-# used in the pandas version
-import pandas as pd
-
 """
 **Part 1**:
 Create a function that when called returns the station_id, and date pair that reported the lowest temperature. 
 If a tie occurs simply return one pair at random.
 """
 
-# Function 1) Get lowest temp using Pandas
-def get_lowest_temp_pd(file):
-    data_frame = pd.read_csv(file, usecols=["station_id", "date", "temperature_c"])
-    min_frame = data_frame.sort_values(by=["temperature_c"])
-    station_id = min_frame.iloc[0][0]
-    date = min_frame.iloc[0][1]
-    lowest_temp = min_frame.iloc[0][2]
-    # debug
-    debugger_util(lowest_temp, station_id, date)
-    return station_id, date
-
-
-# Function 2 Getting the lowest temp using the python3 module csv (with no additional libraries)
+# Function 1 Getting the lowest temp using the python3 module csv (with no additional libraries)
 def get_lowest_temp(file):
     with open(file, "r") as csv_file:
         csv_reader = csv.DictReader(csv_file)
@@ -40,7 +25,7 @@ def get_lowest_temp(file):
                 station_id = line["station_id"]
                 date = line["date"]
         # debug
-        debugger_util(lowest_temp, station_id, date)
+        # debugger_util(lowest_temp, station_id, date)
     return station_id, date
 
 
@@ -67,18 +52,9 @@ def exec_time(start):
 
 
 """
-Uncomment below for debugging and perf timing (tests all three functions
-print("Getting the station and date of the lowest possible temperature using pandas")
 start_time = time.time()
-get_lowest_temp_pd("Data/data.csv")
-print("The first function took ", exec_time(start_time), " to execute")
-
-print(
-    "Getting the station and date of the lowest possible temperature using csv's DictReader"
-)
-start_time_2 = time.time()
 get_lowest_temp("Data/test-data.csv")
-print("The second function took ", exec_time(start_time_2), " to execute")
+print("The second function took ", exec_time(start_time), " to execute")
 
 print(
     "Getting the station and date of the lowest possible temperature "

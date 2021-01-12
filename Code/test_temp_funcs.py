@@ -1,36 +1,31 @@
 import unittest
-from part_1 import get_lowest_temp, get_lowest_temp_pd, get_lowest_temp_slowest
+from part_1 import get_lowest_temp, get_lowest_temp_slowest
 from part_2 import get_temp_flucs
-from part_2_pandas import get_temp_flucs_pd
 from part_3 import get_temp_flucs_date_range
 
-# TODO: reorganize tests, split up functions based on pandas and non pandas versions
+# Tests all (non-pandas) functions using test data
+print("------------------------------------------")
+print("Testing non-pandas temperature functions")
 
 class TestTempFuncs(unittest.TestCase):
 
     # Test functions in part 1 (tests 3 different functions with 3 different data sets)
     def test_get_lowest_temp(self):
         self.assertEqual(get_lowest_temp("Data/test-data-1.csv"), ('68', '2000.375'))
-        self.assertEqual(get_lowest_temp_pd("Data/test-data-1.csv"), (68, 2000.375))
 
-        self.assertEqual(get_lowest_temp_pd("Data/test-data.csv"), (1, 2000.375))
         self.assertEqual(
             get_lowest_temp("Data/test-data-2.csv"), ("68", "2000.375")
         )
 
-
+        self.assertEqual(
+            get_lowest_temp("Data/test-data.csv"), ("1", "2000.375")
+        )
 
     # Test functions in part 2
     def test_get_temp_flucs(self):
         self.assertEqual(get_temp_flucs("Data/test-data-1.csv"), '865329')
-        self.assertEqual(get_temp_flucs_pd("Data/test-data-1.csv"), 865329)
-
         self.assertEqual(get_temp_flucs("Data/test-data-2.csv"), '565329')
-        self.assertEqual(get_temp_flucs_pd("Data/test-data-2.csv"), 420000)
-
         self.assertEqual(get_temp_flucs("Data/test-data.csv"), '1')
-        self.assertEqual(get_temp_flucs_pd("Data/test-data.csv"), 2)
-
 
 
     # Test function in part 3
