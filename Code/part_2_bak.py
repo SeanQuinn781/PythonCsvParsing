@@ -17,55 +17,64 @@ we are expecting the total fluctuation to be 10 degrees, as opposed to 0 which i
 in temperature between the first and last dates.
 """
 
+
+"""
+NOTE:
+This version returns what seems to be the incorrect result (below).
+I think this is due to comparing fluctuations as floats as opposed to ints
+This bug was corrected in part_2.py.
+
+Result and performance info for Data/data.csv:
+Most flucs seen was:  2760.555999999999
+Station with the most flucs:  735181
+The first function took  17.451486825942993  to execute
+
+"""
 def exec_time(start):
     return time.time() - start
 
 # returns the `station_id` that experienced the most amount of temperature fluctuation
 def get_temp_flucs(csv_file):
     reader = csv.DictReader(open(csv_file), delimiter=",")
-    # make sure to convert station_id to int before sorting for correct results
-    sorted_list = sorted(reader, key=lambda row: (int(row["station_id"])), reverse=False)
+    sorted_list = sorted(reader, key=lambda row: (row["station_id"]), reverse=False)
     first_iteration = True
     last_temp = 0
     most_fluc_seen = 0
     station_with_most_flucs = 0
     cur_total_flucs = 0
-    cur_station = 0
 
     for line in sorted_list:
+        date = line["date"]
         temp = float(line["temperature_c"])
-        station = int(line["station_id"])
 
         # if its the first iteration we need to initialize some variables
         if first_iteration:
             last_temp = temp
             first_iteration = False
-            cur_station = station
+            cur_station = line["station_id"]
 
         # if the station changes we need to reset some variables
-        if cur_station != station:
+        if cur_station != line["station_id"]:
             if cur_total_flucs > most_fluc_seen:
                 most_fluc_seen = cur_total_flucs
                 station_with_most_flucs = cur_station
 
             # reset current_station until next time station updates
-            cur_station = station
+            cur_station = line["station_id"]
 
             # reset cur total flucs
             cur_total_flucs = 0
 
         else:
             cur_fluc = abs(last_temp - temp)
-            # make sure to convert cur_fluc (float) to int when tracking most fluctuations
-            cur_total_flucs += int(cur_fluc)
-            last_temp = temp
-
+            cur_total_flucs += cur_fluc
             if cur_total_flucs > most_fluc_seen:
                 most_fluc_seen = cur_total_flucs
                 station_with_most_flucs = cur_station
 
+            last_temp = temp
+
     print("Station with the most flucs: ", station_with_most_flucs)
-    print("Most flucs seen: ", most_fluc_seen)
     return station_with_most_flucs
 
 
@@ -79,9 +88,11 @@ start_time = time.time()
 get_temp_flucs("Data/data.csv")
 print("The first function took ", exec_time(start_time), " to execute")
 """
-"""
-Station with the most flucs:  758064
-Most flucs seen:  2532
-The first function took  18.426657915115356  to execute
 
+"""
+Result and performance info for Data/data.csv:
+
+Most flucs seen was:  2760.555999999999
+Station with the most flucs:  735181
+The first function took  17.451486825942993  to execute
 """

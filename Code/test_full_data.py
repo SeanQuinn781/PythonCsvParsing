@@ -22,7 +22,7 @@ class TestStringMethods(unittest.TestCase):
 
     # Test functions in part 2
     def test_get_temp_flucs(self):
-        self.assertEqual(get_temp_flucs("Data/data.csv"), '735181')
+        self.assertEqual(get_temp_flucs("Data/data.csv"), 758064)
 
     # Test function in part 3
     def test_get_temp_flucs_date_range(self):
@@ -32,7 +32,7 @@ class TestStringMethods(unittest.TestCase):
 
     # Test functions in part 1 (tests 3 different functions with 3 different data sets)
     def test_get_lowest_temp_pd(self):
-        self.assertEqual(get_lowest_temp_pd("Data/data.csv"), (676223.0, 2010.542))
+        self.assertEqual(get_lowest_temp_pd("Data/data.csv"), (676223.0, 2010.5420000000001))
 
     # Test functions in part 2
     def test_get_temp_flucs_pd(self):

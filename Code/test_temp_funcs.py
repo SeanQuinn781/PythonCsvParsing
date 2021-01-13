@@ -23,9 +23,9 @@ class TestTempFuncs(unittest.TestCase):
 
     # Test functions in part 2
     def test_get_temp_flucs(self):
-        self.assertEqual(get_temp_flucs("Data/test-data-1.csv"), '865329')
-        self.assertEqual(get_temp_flucs("Data/test-data-2.csv"), '565329')
-        self.assertEqual(get_temp_flucs("Data/test-data.csv"), '1')
+        self.assertEqual(get_temp_flucs("Data/test-data-1.csv"), 865329)
+        self.assertEqual(get_temp_flucs("Data/test-data-2.csv"), 565329)
+        self.assertEqual(get_temp_flucs("Data/test-data.csv"), 1)
 
 
     # Test function in part 3
